@@ -4,13 +4,14 @@
 
 int main()
 {
-	gm::mat4 m(3.f);
-	gm::vec4 v1(1.f, 2.f, -3.f, 9.f);
-	gm::vec4 v2(1.f, 2.f, -3.f, 9.f);
+	gm::mat4 m(1.f);
+	
+	m = gm::rotate(m, gm::vec3(0.f, 0.f, 1.f), 3.14159265 / 2.0);
 
-	std::cout << m * v1 << std::endl;
-	std::cout << v1 + v2 << std::endl;
-	gm::normalize(v1);
+	
+	gm::vec4 vec(1.f, 0.f, 0.f, 1.f);
 
+	std::cout << m * vec << std::endl;
+	
 	return 0;
 }

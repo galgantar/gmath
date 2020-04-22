@@ -29,7 +29,7 @@ namespace gm {
 	}
 
 	template<int M, int N>
-	Matrix<M, N>::Matrix(std::initializer_list<std::initializer_list<int>> init_list)
+	Matrix<M, N>::Matrix(std::initializer_list<std::initializer_list<float>> init_list)
 		: arr()
 	{
 		if (init_list.size() != M)

@@ -7,6 +7,8 @@
 #include "Vector3.h"
 #include "Vector4.h"
 
+#include "MatrixTransform.hpp"
+
 namespace gm {
 
 	using mat4 = Matrix<4, 4>;

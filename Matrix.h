@@ -14,7 +14,7 @@ namespace gm {
 	public:
 		Matrix();
 		Matrix(float f);
-		Matrix(std::initializer_list<std::initializer_list<int>> l);
+		Matrix(std::initializer_list<std::initializer_list<float>> l);
 
 		inline std::array<float, N>& operator[](const int index) { return arr[index]; }
 		inline const std::array<float, N>& operator[](const int index) const { return arr[index]; };
