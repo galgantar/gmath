@@ -4,6 +4,9 @@
 #include <array>
 #include <initializer_list>
 
+#ifndef MATRIX_CLASS
+#define MATRIX_CLASS
+
 namespace gm {
 
 	template <int M, int N>
@@ -114,3 +117,5 @@ namespace gm {
 		return out;
 	}
 }
+
+#endif

@@ -1,12 +1,10 @@
 #pragma once
 
-#include "Matrix.h"
-
-#include "Vector3.h"
-#include "Vector4.h"
+#include "MatrixTransform.h"
+#include "Matrix.hpp"
 
 namespace gm {
-	
+
 	Matrix<4, 4> scale(Matrix<4, 4>& mat, const Vector3& vec)
 	{
 		Matrix<4, 4> scale_mat(1.f);
@@ -23,8 +21,6 @@ namespace gm {
 		for (int i = 0; i < 3; ++i)
 			trans_mat[i][3] = trans_vec[i];
 
-		std::cout << "trans_mat: \n" << trans_mat << std::endl;
-
 		return mat * trans_mat;
 	}
 
@@ -33,9 +29,9 @@ namespace gm {
 		Matrix<4, 4> rot_mat;
 		rot_mat =
 		{
-			{ cos(r)+pow(R.x, 2)*(1 - cos(r)), R.x*R.y*(1-cos(r))-R.z*sin(r), R.x*R.z*(1-cos(r))+R.y*sin(r), 0 },
-			{ R.y*R.x*(1-cos(r))+R.z*sin(r), cos(r)+pow(R.y, 2)*(1-cos(r)), R.y*R.z*(1-cos(r))-R.x*sin(r), 0 },
-			{ R.z*R.x*(1-cos(r))-R.y*sin(r), R.z*R.y*(1-cos(r))+R.x*sin(r), cos(r)+pow(R.z, 2)*(1-cos(r)), 0 },
+			{ cos(r) + pow(R.x, 2) * (1 - cos(r)), R.x * R.y * (1 - cos(r)) - R.z * sin(r), R.x * R.z * (1 - cos(r)) + R.y * sin(r), 0 },
+			{ R.y * R.x * (1 - cos(r)) + R.z * sin(r), cos(r) + pow(R.y, 2) * (1 - cos(r)), R.y * R.z * (1 - cos(r)) - R.x * sin(r), 0 },
+			{ R.z * R.x * (1 - cos(r)) - R.y * sin(r), R.z * R.y * (1 - cos(r)) + R.x * sin(r), cos(r) + pow(R.z, 2) * (1 - cos(r)), 0 },
 			{ 0, 0, 0, 1 }
 		};
 

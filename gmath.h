@@ -7,7 +7,7 @@
 #include "Vector3.h"
 #include "Vector4.h"
 
-#include "MatrixTransform.hpp"
+#include "MatrixTransform.h"
 
 namespace gm {
 
