@@ -8,6 +8,7 @@
 #include "Vector4.h"
 
 #include "MatrixTransform.h"
+#include "Projections.h"
 
 namespace gm {
 

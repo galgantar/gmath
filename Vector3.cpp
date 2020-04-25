@@ -59,6 +59,16 @@ namespace gm {
 		return V1.x * V2.x + V1.y * V2.y + V1.z * V2.z;
 	}
 
+	Vector3 cross(const Vector3& v1, const Vector3& v2)
+	{
+		Vector3 out;
+		out.x = v1.y * v2.z - v1.z * v2.y;
+		out.y = v1.z * v2.x - v1.x * v2.z;
+		out.z = v1.x * v2.y - v1.y * v2.x;
+
+		return out;
+	}
+
 	float length(const Vector3& V)
 	{
 		return sqrt(pow(V.x, 2) + pow(V.y, 2) + pow(V.z, 2));

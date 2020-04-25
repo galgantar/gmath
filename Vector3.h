@@ -32,8 +32,9 @@ namespace gm {
 	Vector3 operator+(const Vector3& V1, const Vector3& V2);
 	Vector3 operator-(const Vector3& V1, const Vector3& V2);
 
-	float dot(const Vector3& V1, const Vector3& V2);
 	float length(const Vector3& V);
+	float dot(const Vector3& V1, const Vector3& V2);
+	Vector3 cross(const Vector3& V1, const Vector3& V2);
 	Vector3 normalize(const Vector3& V);
 
 	std::ostream& operator<<(std::ostream& out, const Vector3& V);
