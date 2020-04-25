@@ -1,29 +1,51 @@
-#include "Vector3.h"
+#pragma once
 
-#include <iostream>
-#include <cmath>
+#ifndef VECTOR3
+#define VECTOR3
+
+
+#ifndef MATRIX
+#include "Matrix.hpp"
+#endif
 
 
 namespace gm {
 
-	Vector3::Vector3()
-		: x(), y(), z()
+	struct Vector3
 	{
+		union
+		{
+			struct { float x, y, z; };
+			struct { float r, g, b; };
+		};
 
+
+		Vector3()
+			: x(), y(), z()
+		{
+
+		}
+		
+		Vector3(const float x, const float y, const float z)
+			: x(x), y(y), z(z)
+		{
+
+		}
+
+		inline float& operator[](const int index) { return *(&x + index); }
+		inline const float& operator[](const int index) const { return *(&x + index); }
+	};
+
+
+	bool operator==(const Vector3& V1, const Vector3& V2)
+	{
+		return V1.x == V2.x && V1.y == V2.y && V1.z == V2.z;
 	}
 
-	Vector3::Vector3(const float x, const float y, const float z)
-		: x(x), y(y), z(z)
+	bool operator!=(const Vector3& V1, const Vector3& V2)
 	{
-
+		return !operator==(V1, V2);
 	}
-
-	Vector3::~Vector3()
-	{
-
-	}
-
-
 
 	Vector3 operator+(const Vector3& V1, const Vector3& V2)
 	{
@@ -40,14 +62,14 @@ namespace gm {
 		return Vector3(V.x * f, V.y * f, V.z * f);
 	}
 
+	Vector3 operator*(const float f, const Vector3& V)
+	{
+		return operator*(V, f);
+	}
+
 	Vector3 operator/(const Vector3& V, const float f)
 	{
 		return Vector3(V.x / f, V.y / f, V.z / f);
-	}
-
-	Vector3 operator*(const float f, const Vector3& V)
-	{
-		return V * f;
 	}
 
 	Vector3 operator/(const float f, const Vector3& V)
@@ -79,6 +101,17 @@ namespace gm {
 		return V / gm::length(V);
 	}
 
+	Vector3 operator*(const Matrix<3, 3>& M, const Vector3& V)
+	{
+		Vector3 out;
+
+		for (int i = 0; i < 3; ++i)
+			for (int j = 0; j < 3; ++j)
+				out[j] += M[i][j] * V[j];
+
+		return out;
+	}
+
 	std::ostream& operator<<(std::ostream& out, const Vector3& V)
 	{
 		out << "( ";
@@ -91,15 +124,6 @@ namespace gm {
 
 		return out;
 	}
-
-	Vector3 operator*(const Matrix<3, 3>& M, const Vector3& V)
-	{
-		Vector3 out;
-
-		for (int i = 0; i < 3; ++i)
-			for (int j = 0; j < 3; ++j)
-				out[j] += M[i][j] * V[j];
-
-		return out;
-	}
 }
+
+#endif // VECTOR3

@@ -1,7 +1,13 @@
 #pragma once
 
-#include "MatrixTransform.h"
-#include "Matrix.hpp"
+#ifndef MATRIX
+	#include "Matrix.hpp"
+#endif
+
+#ifndef VECTOR3
+	#include "Vector3.hpp"
+#endif
+
 
 namespace gm {
 
@@ -11,7 +17,7 @@ namespace gm {
 		for (int i = 0; i < 3; ++i)
 			scale_mat[i][i] = vec[i];
 
-		return matrix_multiplication(mat, scale_mat);
+		return mat * scale_mat;
 
 	}
 
@@ -21,11 +27,13 @@ namespace gm {
 		for (int i = 0; i < 3; ++i)
 			trans_mat[i][3] = trans_vec[i];
 
-		return matrix_multiplication(mat,trans_mat);
+		return mat * trans_mat;
 	}
 
-	Matrix<4, 4> rotate(Matrix<4, 4>& mat, const Vector3& R, const float angle)
+	Matrix<4, 4> rotate(Matrix<4, 4>& mat, const Vector3& vec, const float angle)
 	{
+		Vector3 R = normalize(vec);
+		
 		Matrix<4, 4> rot_mat;
 		float c = cos(angle);
 		float s = sin(angle);
@@ -38,6 +46,6 @@ namespace gm {
 			{ 0, 0, 0, 1 }
 		};
 
-		return matrix_multiplication(mat, rot_mat);
+		return mat * rot_mat;
 	}
 }

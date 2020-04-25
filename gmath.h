@@ -1,14 +1,25 @@
 #pragma once
 
-#include "Matrix.h"
+#ifndef _IOSTREAM_
+#include <iostream>
+#endif
+
+#ifndef _ARRAY_
+#include <array>
+#endif
+
+#include <initializer_list>
+#include <cmath>
+
+
 #include "Matrix.hpp"
 
-#include "Vector2.h"
-#include "Vector3.h"
-#include "Vector4.h"
+#include "Vector2.hpp"
+#include "Vector3.hpp"
+#include "Vector4.hpp"
 
-#include "MatrixTransform.h"
-#include "Projections.h"
+#include "MatrixTransform.hpp"
+#include "Projections.hpp"
 
 namespace gm {
 

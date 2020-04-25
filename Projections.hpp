@@ -1,7 +1,9 @@
-#include "Projections.h"
+#pragma once
 
-#include <cmath>
+#ifndef MATRIX
 #include "Matrix.hpp"
+#endif
+
 
 namespace gm {
 
@@ -10,7 +12,7 @@ namespace gm {
 		return degrees * 0.01745329251994329576923690768489f;
 	}
 
-	Matrix<4, 4> orthographic(float right, float top, float near, float far)
+	Matrix<4, 4> ortho(float right, float top, float near, float far)
 	{
 		Matrix<4, 4> mat;
 
@@ -31,8 +33,8 @@ namespace gm {
 		Matrix<4, 4> mat;
 		mat[0][0] = near / right;
 		mat[1][1] = near / top;
-		mat[2][2] = -1 * (far + near) / (far - near);
-		mat[2][3] = (-2 * far * near) / (far - near);
+		mat[2][2] = -(far + near) / (far - near);
+		mat[2][3] = -(2 * far * near) / (far - near);
 		mat[3][2] = -1;
 
 		return mat;
@@ -58,6 +60,6 @@ namespace gm {
 		for (int i = 0; i < 3; ++i)
 			camera_rotation[i][2] = camera_front[i];
 
-		return matrix_multiplication(transpose(camera_rotation), camera_translation);
+		return transpose(camera_rotation) * camera_translation;
 	}
 }

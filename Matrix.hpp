@@ -1,51 +1,56 @@
-#ifndef MATRIX_CLASS
-#define MATRIX_CLASS
+#pragma once
 
-#include "Matrix.h"
+#ifndef MATRIX
+#define MATRIX
 
-#include <array>
-#include <initializer_list>
 
 namespace gm {
 
 	template <int M, int N>
-	Matrix<M, N>::Matrix()
-		: arr()
+	class Matrix
 	{
-		for (int i = 0; i < M; ++i)
-			for (int j = 0; j < N; ++j)
-				arr[i][j] = 0;
-	}
+	protected:
+		std::array<std::array<float, N>, M> arr;
 
-	template <int M, int N>
-	Matrix<M, N>::Matrix(float f)
-		: arr()
-	{
-		if (M != N)
-			throw;
+	public:
+		Matrix()
+			: arr()
+		{
+			for (int i = 0; i < M; ++i)
+				for (int j = 0; j < N; ++j)
+					arr[i][j] = 0;
+		}
 
-		Matrix<M, N>();
-
-		for (int i = 0; i < M; ++i)
-			arr[i][i] = f;
-	}
-
-	template<int M, int N>
-	Matrix<M, N>::Matrix(std::initializer_list<std::initializer_list<float>> init_list)
-		: arr()
-	{
-		if (init_list.size() != M)
-			throw;
-
-		for (int i = 0; i < M; ++i) {
-			if ((init_list.begin() + i)->size() != N)
+		Matrix(float f)
+			: arr()
+		{
+			if (M != N)
 				throw;
 
-			for (int j = 0; j < N; ++j)
-				arr[i][j] = *((init_list.begin() + i)->begin() + j);
-		}
-	}
+			Matrix<M, N>();
 
+			for (int i = 0; i < M; ++i)
+				arr[i][i] = f;
+		}
+
+		Matrix(std::initializer_list<std::initializer_list<float>> init_list)
+			: arr()
+		{
+			if (init_list.size() != M)
+				throw;
+
+			for (int i = 0; i < M; ++i) {
+				if ((init_list.begin() + i)->size() != N)
+					throw;
+
+				for (int j = 0; j < N; ++j)
+					arr[i][j] = *((init_list.begin() + i)->begin() + j);
+			}
+		}
+
+		inline std::array<float, N>& operator[](const int index) { return arr[index]; }
+		inline const std::array<float, N>& operator[](const int index) const { return arr[index]; };
+	};
 
 
 	template <int M, int N>
@@ -89,27 +94,33 @@ namespace gm {
 	Matrix<M, N> operator*(const Matrix<M, N>& mat, const float f)
 	{
 		return operator*(f, mat);
-	}
-
-	template <int M, int N>
-	Matrix<M, N> matrix_multiplication(const Matrix<M, N>& M1, const Matrix<M, N>& M2)
-	{
-		Matrix<M, N> out;
-
-		for (int i = 0; i < M; ++i)
-			for (int j = 0; j < N; ++j)
-				for (int k = 0; k < M; ++k)
-					out[i][j] += M1[i][k] * M2[k][j];
-
-		return out;
-	}
+	}	
 
 	template <int M, int N>
 	Matrix<N, M> operator*(const Matrix<N, M>& M1, const Matrix<N, M>& M2)
 	{
-		// multiplication is inversed
+		{
+			Matrix<M, N> out;
+
+			for (int i = 0; i < M; ++i)
+				for (int j = 0; j < N; ++j)
+					for (int k = 0; k < M; ++k)
+						out[i][j] += M1[i][k] * M2[k][j];
+
+			return out;
+		}
+	}
+
+	template <int M, int N>
+	Matrix<N, M> transpose(const Matrix<M, N>& mat)
+	{
+		Matrix<N, M> transposed;
 		
-		return matrix_multiplication(M2, M1);
+		for (int i = 0; i < N; ++i)
+			for (int j = 0; j < M; ++j)
+				transposed[i][j] = mat[j][i];
+
+		return transposed;
 	}
 
 	template <int M, int N>
@@ -125,16 +136,10 @@ namespace gm {
 	}
 
 	template <int M, int N>
-	Matrix<N, M> transpose(const Matrix<M, N>& mat)
+	const float* value_ptr(const Matrix<M, N>& mat)
 	{
-		Matrix<N, M> transposed;
-		
-		for (int i = 0; i < N; ++i)
-			for (int j = 0; j < M; ++j)
-				transposed[i][j] = mat[j][i];
-
-		return transposed;
+		return &(mat[0][0]);
 	}
 }
 
-#endif
+#endif // MATRIX
