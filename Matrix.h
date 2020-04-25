@@ -9,7 +9,7 @@ namespace gm {
 	class Matrix
 	{
 	protected:
-		std::array<std::array<float, M>, N> arr;
+		std::array<std::array<float, N>, M> arr;
 	
 	public:
 		Matrix();

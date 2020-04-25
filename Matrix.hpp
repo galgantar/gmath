@@ -1,11 +1,10 @@
-#include "Matrix.h"
+#ifndef MATRIX_CLASS
+#define MATRIX_CLASS
 
+#include "Matrix.h"
 
 #include <array>
 #include <initializer_list>
-
-#ifndef MATRIX_CLASS
-#define MATRIX_CLASS
 
 namespace gm {
 
@@ -93,7 +92,7 @@ namespace gm {
 	}
 
 	template <int M, int N>
-	Matrix<M, N> operator*(const Matrix<M, N>& M1, const Matrix<M, N>& M2)
+	Matrix<M, N> matrix_multiplication(const Matrix<M, N>& M1, const Matrix<M, N>& M2)
 	{
 		Matrix<M, N> out;
 
@@ -106,6 +105,14 @@ namespace gm {
 	}
 
 	template <int M, int N>
+	Matrix<N, M> operator*(const Matrix<N, M>& M1, const Matrix<N, M>& M2)
+	{
+		// multiplication is inversed
+		
+		return matrix_multiplication(M2, M1);
+	}
+
+	template <int M, int N>
 	std::ostream& operator<<(std::ostream& out, const Matrix<M, N>& mat)
 	{
 		for (int i = 0; i < M; ++i) {
@@ -115,6 +122,18 @@ namespace gm {
 			out << '\n';
 		}
 		return out;
+	}
+
+	template <int M, int N>
+	Matrix<N, M> transpose(const Matrix<M, N>& mat)
+	{
+		Matrix<N, M> transposed;
+		
+		for (int i = 0; i < N; ++i)
+			for (int j = 0; j < M; ++j)
+				transposed[i][j] = mat[j][i];
+
+		return transposed;
 	}
 }
 
