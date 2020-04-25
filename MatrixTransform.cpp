@@ -11,7 +11,7 @@ namespace gm {
 		for (int i = 0; i < 3; ++i)
 			scale_mat[i][i] = vec[i];
 
-		return mat * scale_mat;
+		return matrix_multiplication(mat, scale_mat);
 
 	}
 
@@ -21,21 +21,23 @@ namespace gm {
 		for (int i = 0; i < 3; ++i)
 			trans_mat[i][3] = trans_vec[i];
 
-		return mat * trans_mat;
+		return matrix_multiplication(mat,trans_mat);
 	}
 
-	Matrix<4, 4> rotate(Matrix<4, 4>& mat, const Vector3& R, const float r)
+	Matrix<4, 4> rotate(Matrix<4, 4>& mat, const Vector3& R, const float angle)
 	{
 		Matrix<4, 4> rot_mat;
+		float c = cos(angle);
+		float s = sin(angle);
+		
 		rot_mat =
 		{
-			{ cos(r) + pow(R.x, 2) * (1 - cos(r)), R.x * R.y * (1 - cos(r)) - R.z * sin(r), R.x * R.z * (1 - cos(r)) + R.y * sin(r), 0 },
-			{ R.y * R.x * (1 - cos(r)) + R.z * sin(r), cos(r) + pow(R.y, 2) * (1 - cos(r)), R.y * R.z * (1 - cos(r)) - R.x * sin(r), 0 },
-			{ R.z * R.x * (1 - cos(r)) - R.y * sin(r), R.z * R.y * (1 - cos(r)) + R.x * sin(r), cos(r) + pow(R.z, 2) * (1 - cos(r)), 0 },
+			{ c + pow(R.x, 2) * (1 - c), R.x * R.y * (1 - c) - R.z * s, R.x * R.z * (1 - c) + R.y * s, 0 },
+			{ R.y * R.x * (1 - c) + R.z * s, c + pow(R.y, 2) * (1 - c), R.y * R.z * (1 - c) - R.x * s, 0 },
+			{ R.z * R.x * (1 - c) - R.y * s, R.z * R.y * (1 - c) + R.x * s, c + pow(R.z, 2) * (1 - c), 0 },
 			{ 0, 0, 0, 1 }
 		};
 
-		return mat * rot_mat;
+		return matrix_multiplication(mat, rot_mat);
 	}
-
 }
