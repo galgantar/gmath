@@ -47,6 +47,22 @@ namespace gm {
 		return !operator==(V1, V2);
 	}
 
+	Vector3 operator-(const Vector3& V)
+	{
+		return Vector3(-V.x, -V.y, -V.z);
+	}
+
+	void operator+=(Vector3& V1, const Vector3& V2)
+	{
+		for (int i = 0; i < 3; ++i)
+			V1[i] += V2[i];
+	}
+
+	void operator-=(Vector3& V1, const Vector3& V2)
+	{
+		operator+=(V1, -V2);
+	}
+
 	Vector3 operator+(const Vector3& V1, const Vector3& V2)
 	{
 		return Vector3(V1.x + V2.x, V1.y + V2.y, V1.z + V2.z);
