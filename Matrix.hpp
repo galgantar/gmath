@@ -54,7 +54,7 @@ namespace gm {
 
 
 	template <int M, int N>
-	Matrix<M, N> operator+(const Matrix<M, N>& M1, Matrix<M, N>& M2)
+	inline Matrix<M, N> operator+(const Matrix<M, N>& M1, Matrix<M, N>& M2)
 	{
 		Matrix<M, N> out;
 
@@ -67,7 +67,7 @@ namespace gm {
 	}
 
 	template <int M, int N>
-	Matrix<M, N> operator-(const Matrix<M, N>& M1, const Matrix<M, N>& M2)
+	inline Matrix<M, N> operator-(const Matrix<M, N>& M1, const Matrix<M, N>& M2)
 	{
 		Matrix<M, N> out;
 
@@ -79,7 +79,7 @@ namespace gm {
 	}
 
 	template <int M, int N>
-	Matrix<M, N> operator*(const float f, const Matrix<M, N>& mat)
+	inline Matrix<M, N> operator*(const float f, const Matrix<M, N>& mat)
 	{
 		Matrix<M, N> out;
 
@@ -91,13 +91,13 @@ namespace gm {
 	}
 
 	template <int M, int N>
-	Matrix<M, N> operator*(const Matrix<M, N>& mat, const float f)
+	inline Matrix<M, N> operator*(const Matrix<M, N>& mat, const float f)
 	{
 		return operator*(f, mat);
 	}	
 
 	template <int M, int N>
-	Matrix<N, M> operator*(const Matrix<N, M>& M1, const Matrix<N, M>& M2)
+	inline Matrix<N, M> operator*(const Matrix<N, M>& M1, const Matrix<N, M>& M2)
 	{
 		{
 			Matrix<M, N> out;
@@ -112,7 +112,7 @@ namespace gm {
 	}
 
 	template <int M, int N>
-	Matrix<N, M> transpose(const Matrix<M, N>& mat)
+	inline Matrix<N, M> transpose(const Matrix<M, N>& mat)
 	{
 		Matrix<N, M> transposed;
 		
@@ -124,7 +124,7 @@ namespace gm {
 	}
 
 	template <int M, int N>
-	std::ostream& operator<<(std::ostream& out, const Matrix<M, N>& mat)
+	inline std::ostream& operator<<(std::ostream& out, const Matrix<M, N>& mat)
 	{
 		for (int i = 0; i < M; ++i) {
 			for (int j = 0; j < N; ++j)
@@ -136,7 +136,7 @@ namespace gm {
 	}
 
 	template <int M, int N>
-	const float* value_ptr(const Matrix<M, N>& mat)
+	inline const float* value_ptr(const Matrix<M, N>& mat)
 	{
 		return &(mat[0][0]);
 	}

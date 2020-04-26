@@ -37,67 +37,67 @@ namespace gm {
 	};
 
 
-	bool operator==(const Vector3& V1, const Vector3& V2)
+	inline bool operator==(const Vector3& V1, const Vector3& V2)
 	{
 		return V1.x == V2.x && V1.y == V2.y && V1.z == V2.z;
 	}
 
-	bool operator!=(const Vector3& V1, const Vector3& V2)
+	inline bool operator!=(const Vector3& V1, const Vector3& V2)
 	{
 		return !operator==(V1, V2);
 	}
 
-	Vector3 operator-(const Vector3& V)
+	inline Vector3 operator-(const Vector3& V)
 	{
 		return Vector3(-V.x, -V.y, -V.z);
 	}
 
-	void operator+=(Vector3& V1, const Vector3& V2)
+	inline void operator+=(Vector3& V1, const Vector3& V2)
 	{
 		for (int i = 0; i < 3; ++i)
 			V1[i] += V2[i];
 	}
 
-	void operator-=(Vector3& V1, const Vector3& V2)
+	inline void operator-=(Vector3& V1, const Vector3& V2)
 	{
 		operator+=(V1, -V2);
 	}
 
-	Vector3 operator+(const Vector3& V1, const Vector3& V2)
+	inline Vector3 operator+(const Vector3& V1, const Vector3& V2)
 	{
 		return Vector3(V1.x + V2.x, V1.y + V2.y, V1.z + V2.z);
 	}
 
-	Vector3 operator-(const Vector3& V1, const Vector3& V2)
+	inline Vector3 operator-(const Vector3& V1, const Vector3& V2)
 	{
 		return Vector3(V1.x - V2.x, V1.y - V2.y, V1.z - V2.z);
 	}
 
-	Vector3 operator*(const Vector3& V, const float f)
+	inline Vector3 operator*(const Vector3& V, const float f)
 	{
 		return Vector3(V.x * f, V.y * f, V.z * f);
 	}
 
-	Vector3 operator*(const float f, const Vector3& V)
+	inline Vector3 operator*(const float f, const Vector3& V)
 	{
 		return operator*(V, f);
 	}
 
-	Vector3 operator/(const Vector3& V, const float f)
+	inline Vector3 operator/(const Vector3& V, const float f)
 	{
 		return Vector3(V.x / f, V.y / f, V.z / f);
 	}
 
-	Vector3 operator/(const float f, const Vector3& V)
+	inline Vector3 operator/(const float f, const Vector3& V)
 	{
 		return operator/(V, f);
 	}
 
-	float dot(const Vector3& V1, const Vector3& V2) {
+	inline float dot(const Vector3& V1, const Vector3& V2) {
 		return V1.x * V2.x + V1.y * V2.y + V1.z * V2.z;
 	}
 
-	Vector3 cross(const Vector3& v1, const Vector3& v2)
+	inline Vector3 cross(const Vector3& v1, const Vector3& v2)
 	{
 		Vector3 out;
 		out.x = v1.y * v2.z - v1.z * v2.y;
@@ -107,17 +107,17 @@ namespace gm {
 		return out;
 	}
 
-	float length(const Vector3& V)
+	inline float length(const Vector3& V)
 	{
 		return sqrt(pow(V.x, 2) + pow(V.y, 2) + pow(V.z, 2));
 	}
 
-	Vector3 normalize(const Vector3& V)
+	inline Vector3 normalize(const Vector3& V)
 	{
 		return V / gm::length(V);
 	}
 
-	Vector3 operator*(const Matrix<3, 3>& M, const Vector3& V)
+	inline Vector3 operator*(const Matrix<3, 3>& M, const Vector3& V)
 	{
 		Vector3 out;
 
@@ -128,7 +128,7 @@ namespace gm {
 		return out;
 	}
 
-	std::ostream& operator<<(std::ostream& out, const Vector3& V)
+	inline std::ostream& operator<<(std::ostream& out, const Vector3& V)
 	{
 		out << "( ";
 		for (int i = 0; i < 3; ++i) {

@@ -36,77 +36,77 @@ namespace gm {
 	};
 
 
-	bool operator==(const Vector2& V1, const Vector2& V2)
+	inline bool operator==(const Vector2& V1, const Vector2& V2)
 	{
 		return V1.x == V2.x && V1.y == V2.y;
 	}
 
-	bool operator!=(const Vector2& V1, const Vector2& V2)
+	inline bool operator!=(const Vector2& V1, const Vector2& V2)
 	{
 		return !operator==(V1, V2);
 	}
 
-	Vector2 operator-(const Vector2& V)
+	inline Vector2 operator-(const Vector2& V)
 	{
 		return Vector2(-V.x, -V.y);
 	}
 
-	void operator+=(Vector2& V1, const Vector2& V2)
+	inline void operator+=(Vector2& V1, const Vector2& V2)
 	{
 		for (int i = 0; i < 2; ++i)
 			V1[i] += V2[i];
 	}
 
-	void operator-=(Vector2& V1, const Vector2& V2)
+	inline void operator-=(Vector2& V1, const Vector2& V2)
 	{
 		operator+=(V1, -V2);
 	}
 
-	Vector2 operator+(const Vector2& V1, const Vector2& V2)
+	inline Vector2 operator+(const Vector2& V1, const Vector2& V2)
 	{
 		return Vector2(V1.x + V2.x, V1.y + V2.y);
 	}
 
-	Vector2 operator-(const Vector2& V1, const Vector2& V2)
+	inline Vector2 operator-(const Vector2& V1, const Vector2& V2)
 	{
 		return Vector2(V1.x - V2.x, V1.y - V2.y);
 	}
 
-	Vector2 operator*(const Vector2& V, const float f)
+	inline Vector2 operator*(const Vector2& V, const float f)
 	{
 		return Vector2(V.x * f, V.y * f);
 	}
 
-	Vector2 operator*(const float f, const Vector2& V)
+	inline Vector2 operator*(const float f, const Vector2& V)
 	{
 		return operator*(V, f);
 	}
 
-	Vector2 operator/(const Vector2& V, const float f)
+	inline Vector2 operator/(const Vector2& V, const float f)
 	{
 		return Vector2(V.x / f, V.y / f);
 	}
 
-	Vector2 operator/(const float f, const Vector2& V)
+	inline Vector2 operator/(const float f, const Vector2& V)
 	{
 		return operator/(V, f);
 	}
 
-	float dot(const Vector2& V1, const Vector2& V2) {
+	inline float dot(const Vector2& V1, const Vector2& V2) {
 		return V1.x * V2.x + V1.y * V2.y;
 	}
 
-	float length(const Vector2& V)
+	inline float length(const Vector2& V)
 	{
 		return sqrt(pow(V.x, 2) + pow(V.y, 2));
 	}
 
-	Vector2 normalize(const Vector2& V)
+	inline Vector2 normalize(const Vector2& V)
 	{
 		return V / gm::length(V);
 	}
 
-	Vector2 operator*(const Matrix<2, 2>& M, const Vector2& V)
+	inline Vector2 operator*(const Matrix<2, 2>& M, const Vector2& V)
 	{
 		Vector2 out;
 
@@ -117,7 +117,7 @@ namespace gm {
 		return out;
 	}
 
-	std::ostream& operator<<(std::ostream& out, const Vector2& V)
+	inline std::ostream& operator<<(std::ostream& out, const Vector2& V)
 	{
 		out << "( ";
 		for (int i = 0; i < 2; ++i) {

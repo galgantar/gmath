@@ -7,12 +7,12 @@
 
 namespace gm {
 
-	float radians(float degrees)
+	inline float radians(float degrees)
 	{
 		return degrees * 0.01745329251994329576923690768489f;
 	}
 
-	Matrix<4, 4> ortho(float right, float top, float near, float far)
+	inline Matrix<4, 4> ortho(float right, float top, float near, float far)
 	{
 		Matrix<4, 4> mat;
 
@@ -25,7 +25,7 @@ namespace gm {
 		return mat;
 	}
 	
-	Matrix<4, 4> perspective(float fov, float ratio, float near, float far)
+	inline Matrix<4, 4> perspective(float fov, float ratio, float near, float far)
 	{
 		float right = tan(fov / 2.f) * near;
 		float top = right / ratio;
@@ -41,7 +41,7 @@ namespace gm {
 	}
 
 
-	Matrix<4, 4> lookAt(const Vector3& eye, const Vector3& target, const Vector3& worldUp)
+	inline Matrix<4, 4> lookAt(const Vector3& eye, const Vector3& target, const Vector3& worldUp)
 	{
 		Vector3 camera_front = normalize(eye - target);
 		Vector3 camera_right = normalize(cross(normalize(worldUp), camera_front));

@@ -36,78 +36,78 @@ namespace gm {
 	};
 
 
-	bool operator==(const Vector4& V1, const Vector4& V2)
+	inline bool operator==(const Vector4& V1, const Vector4& V2)
 	{
 		return V1.x == V2.x && V1.y == V2.y && V1.z == V2.z && V1.w == V2.w;
 	}
 
-	bool operator!=(const Vector4& V1, const Vector4& V2)
+	inline bool operator!=(const Vector4& V1, const Vector4& V2)
 	{
 		return !operator==(V1, V2);
 	}
 
-	Vector4 operator-(const Vector4& V)
+	inline Vector4 operator-(const Vector4& V)
 	{
 		return Vector4(-V.x, -V.y, -V.z, -V.w);
 	}
 
-	void operator+=(Vector4& V1, const Vector4& V2)
+	inline void operator+=(Vector4& V1, const Vector4& V2)
 	{
 		for (int i = 0; i < 4; ++i)
 			V1[i] += V2[i];
 	}
 
-	void operator-=(Vector4& V1, const Vector4& V2)
+	inline void operator-=(Vector4& V1, const Vector4& V2)
 	{
 		operator+=(V1, -V2);
 	}
 
-	Vector4 operator+(const Vector4& V1, const Vector4& V2)
+	inline Vector4 operator+(const Vector4& V1, const Vector4& V2)
 	{
 		return Vector4(V1.x + V2.x, V1.y + V2.y, V1.z + V2.z, V1.w + V2.w);
 	}
 
-	Vector4 operator-(const Vector4& V1, const Vector4& V2)
+	inline Vector4 operator-(const Vector4& V1, const Vector4& V2)
 	{
 		return Vector4(V1.x - V2.x, V1.y - V2.y, V1.z - V2.z, V1.w - V2.w);
 	}
 
-	Vector4 operator*(const Vector4& V, const float f)
+	inline Vector4 operator*(const Vector4& V, const float f)
 	{
 		return Vector4(V.x * f, V.y * f, V.z * f, V.w * f);
 	}
 
-	Vector4 operator*(const float f, const Vector4& V)
+	inline Vector4 operator*(const float f, const Vector4& V)
 	{
 		return operator*(V, f);
 	}
 
-	Vector4 operator/(const Vector4& V, const float f)
+	inline Vector4 operator/(const Vector4& V, const float f)
 	{
 		return Vector4(V.x / f, V.y / f, V.z / f, V.w / f);
 	}
 
-	Vector4 operator/(const float f, const Vector4& V)
+	inline Vector4 operator/(const float f, const Vector4& V)
 	{
 		return operator/(V, f);
 	}
 
-	float dot(const Vector4& V1, const Vector4& V2)
+	inline float dot(const Vector4& V1, const Vector4& V2)
 	{
 		return V1.x * V2.x + V1.y * V2.y + V1.z * V2.z + V1.w * V2.w;
 	}
 
-	float length(const Vector4& V)
+	inline float length(const Vector4& V)
 	{
 		return sqrt(pow(V.x, 2) + pow(V.y, 2) + pow(V.z, 2) + pow(V.w, 2));
 	}
 
-	Vector4 normalize(const Vector4& V)
+	inline Vector4 normalize(const Vector4& V)
 	{
 		return V / gm::length(V);
 	}
 
-	Vector4 operator*(const Matrix<4, 4>& M, const Vector4& V)
+	inline Vector4 operator*(const Matrix<4, 4>& M, const Vector4& V)
 	{
 		Vector4 out;
 
@@ -118,7 +118,7 @@ namespace gm {
 		return out;
 	}
 
-	std::ostream& operator<<(std::ostream& out, const Vector4& V)
+	inline std::ostream& operator<<(std::ostream& out, const Vector4& V)
 	{
 		out << "( ";
 		for (int i = 0; i < 4; ++i) {
