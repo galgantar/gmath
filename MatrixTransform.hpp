@@ -17,7 +17,7 @@ namespace gm {
 		for (int i = 0; i < 3; ++i)
 			scale_mat[i][i] = vec[i];
 
-		return mat * scale_mat;
+		return scale_mat * mat;
 
 	}
 
@@ -27,7 +27,7 @@ namespace gm {
 		for (int i = 0; i < 3; ++i)
 			trans_mat[i][3] = trans_vec[i];
 
-		return mat * trans_mat;
+		return trans_mat * mat;
 	}
 
 	Matrix<4, 4> rotate(const Matrix<4, 4>& mat, const Vector3& vec, const float angle)
@@ -46,6 +46,6 @@ namespace gm {
 			{ 0, 0, 0, 1 }
 		};
 
-		return mat * rot_mat;
+		return rot_mat * mat;
 	}
 }
