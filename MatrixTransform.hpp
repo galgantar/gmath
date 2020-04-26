@@ -11,26 +11,26 @@
 
 namespace gm {
 
-	Matrix<4, 4> scale(const Matrix<4, 4>& mat, const Vector3& vec)
+	inline Matrix<4, 4> scale(const Matrix<4, 4>& mat, const Vector3& vec)
 	{
 		Matrix<4, 4> scale_mat(1.f);
 		for (int i = 0; i < 3; ++i)
 			scale_mat[i][i] = vec[i];
 
-		return scale_mat * mat;
+		return mat * scale_mat;
 
 	}
 
-	Matrix<4, 4> translate(const Matrix<4, 4>& mat, const Vector3& trans_vec)
+	inline Matrix<4, 4> translate(const Matrix<4, 4>& mat, const Vector3& trans_vec)
 	{
 		Matrix<4, 4> trans_mat(1.f);
 		for (int i = 0; i < 3; ++i)
 			trans_mat[i][3] = trans_vec[i];
 
-		return trans_mat * mat;
+		return mat * trans_mat;
 	}
 
-	Matrix<4, 4> rotate(const Matrix<4, 4>& mat, const Vector3& vec, const float angle)
+	inline Matrix<4, 4> rotate(const Matrix<4, 4>& mat, const Vector3& vec, const float angle)
 	{
 		Vector3 R = normalize(vec);
 		
@@ -46,6 +46,6 @@ namespace gm {
 			{ 0, 0, 0, 1 }
 		};
 
-		return rot_mat * mat;
+		return mat * rot_mat;
 	}
 }
