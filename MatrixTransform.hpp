@@ -1,17 +1,17 @@
 #pragma once
 
 #ifndef MATRIX
-	#include "Matrix.hpp"
+#include "Matrix.hpp"
 #endif
 
 #ifndef VECTOR3
-	#include "Vector3.hpp"
+#include "Vector3.hpp"
 #endif
 
 
 namespace gm {
 
-	Matrix<4, 4> scale(Matrix<4, 4>& mat, const Vector3& vec)
+	Matrix<4, 4> scale(const Matrix<4, 4>& mat, const Vector3& vec)
 	{
 		Matrix<4, 4> scale_mat(1.f);
 		for (int i = 0; i < 3; ++i)
@@ -21,7 +21,7 @@ namespace gm {
 
 	}
 
-	Matrix<4, 4> translate(Matrix<4, 4>& mat, const Vector3& trans_vec)
+	Matrix<4, 4> translate(const Matrix<4, 4>& mat, const Vector3& trans_vec)
 	{
 		Matrix<4, 4> trans_mat(1.f);
 		for (int i = 0; i < 3; ++i)
@@ -30,7 +30,7 @@ namespace gm {
 		return mat * trans_mat;
 	}
 
-	Matrix<4, 4> rotate(Matrix<4, 4>& mat, const Vector3& vec, const float angle)
+	Matrix<4, 4> rotate(const Matrix<4, 4>& mat, const Vector3& vec, const float angle)
 	{
 		Vector3 R = normalize(vec);
 		
