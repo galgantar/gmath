@@ -25,6 +25,12 @@ namespace gm {
 
 		}
 
+		Vector4(const float f)
+			: x(f), y(f), z(f), w(f)
+		{
+
+		}
+
 		Vector4(const float x, const float y, const float z, const float w)
 			: x(x), y(y), z(z), w(w)
 		{
@@ -70,6 +76,11 @@ namespace gm {
 	inline Vector4 operator-(const Vector4& V1, const Vector4& V2)
 	{
 		return Vector4(V1.x - V2.x, V1.y - V2.y, V1.z - V2.z, V1.w - V2.w);
+	}
+
+	inline Vector4 operator*(const Vector4& V1, const Vector4& V2)
+	{
+		return Vector4(V1.x * V2.x, V1.y * V2.y, V1.z * V2.z, V1.w * V2.w);
 	}
 
 	inline Vector4 operator*(const Vector4& V, const float f)

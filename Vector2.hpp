@@ -25,6 +25,12 @@ namespace gm {
 
 		}
 
+		Vector2(const float f)
+			: x(f), y(f)
+		{
+
+		}
+
 		Vector2(const float x, const float y)
 			: x(x), y(y)
 		{
@@ -70,6 +76,11 @@ namespace gm {
 	inline Vector2 operator-(const Vector2& V1, const Vector2& V2)
 	{
 		return Vector2(V1.x - V2.x, V1.y - V2.y);
+	}
+
+	inline Vector2 operator*(const Vector2& V1, const Vector2& V2)
+	{
+		return Vector2(V1.x * V2.x, V1.y * V2.y);
 	}
 
 	inline Vector2 operator*(const Vector2& V, const float f)

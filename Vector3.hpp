@@ -25,6 +25,12 @@ namespace gm {
 		{
 
 		}
+
+		Vector3(const float f)
+			: x(f), y(f), z(f)
+		{
+
+		}
 		
 		Vector3(const float x, const float y, const float z)
 			: x(x), y(y), z(z)
@@ -76,6 +82,11 @@ namespace gm {
 	inline Vector3 operator*(const Vector3& V, const float f)
 	{
 		return Vector3(V.x * f, V.y * f, V.z * f);
+	}
+
+	inline Vector3 operator*(const Vector3& V1, const Vector3& V2)
+	{
+		return Vector3(V1.x * V2.x, V1.y * V2.y, V1.z * V2.z);
 	}
 
 	inline Vector3 operator*(const float f, const Vector3& V)
