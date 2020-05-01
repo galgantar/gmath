@@ -12,6 +12,21 @@ namespace gm {
 		return degrees * 0.01745329251994329576923690768489f;
 	}
 
+	inline float cos(float angle)
+	{
+		return cosf(angle);
+	}
+
+	inline float sin(float angle)
+	{
+		return sinf(angle);
+	}
+
+	inline float tan(float angle)
+	{
+		return tanf(angle);
+	}
+
 	inline Matrix<4, 4> ortho(float right, float top, float near, float far)
 	{
 		Matrix<4, 4> mat;
